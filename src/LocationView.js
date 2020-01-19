@@ -115,7 +115,7 @@ export default class LocationView extends React.Component {
   };
 
   _getCurrentLocation = () => {
-    const { timeout, maximumAge, enableHighAccuracy } = this.props;
+    const { timeout, enableHighAccuracy } = this.props;
     Geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;
@@ -124,8 +124,7 @@ export default class LocationView extends React.Component {
       error => console.log(error.message),
       {
         enableHighAccuracy,
-        timeout,
-        maximumAge,
+        timeout
       }
     );
   };
