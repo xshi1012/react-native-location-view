@@ -48,7 +48,12 @@ export default class AutoCompleteListView extends React.Component {
     const TouchableControl = Platform.OS === 'ios' ? TouchableOpacity : TouchableNativeFeedback;
     const { structured_formatting } = item;
     return (
-      <TouchableControl onPress={() => Events.trigger('PlaceSelected', item.place_id)}>
+      <TouchableControl onPress={
+          () => {
+            Events.trigger('NeighborhoodSelected', item.structured_formatting.main_text);
+            Events.trigger('PlaceSelected', item.place_id);
+        }}
+      >
         <View style={styles.row}>
           <Text style={styles.primaryText} numberOfLines={1}>
             {structured_formatting.main_text}

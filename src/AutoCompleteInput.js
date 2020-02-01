@@ -62,6 +62,8 @@ export default class AutoCompleteInput extends React.Component {
       });
   };
 
+  fetchNeighborhoodForLocation = neighborhood => this.setState({ text: neighborhood })
+
   _request = text => {
     this._abortRequest();
     if (text.length >= 3) {
