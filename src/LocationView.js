@@ -91,6 +91,7 @@ export default class LocationView extends React.Component {
   };
 
   _onMapRegionChangeComplete = region => {
+    this.setState({ ...this.state.region, ...region });
     if (this.state.neighborhood) {
       this._input.fetchNeighborhoodForLocation(this.state.neighborhood);
     } else {
@@ -109,8 +110,11 @@ export default class LocationView extends React.Component {
   };
 
   _setRegion = (region, animate = true) => {
-    this.state.region = { ...this.state.region, ...region };
-    if (animate) this._map.animateToRegion(this.state.region);
+    if (animate) {
+      this._map.animateToRegion({...this.state.region, ...region});
+    } else {
+      this.state.region = {...this.state.region, ...region};
+    }
   };
 
   _onPlaceSelected = placeId => {
